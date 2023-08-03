@@ -1,0 +1,60 @@
+{
+    "data" : [{
+        "userID" : 1234,
+        "tripID": 9999,
+        "tripName" : "Summer in Paris",
+        "startDate" : "2023-08-03",
+        "endDate" : "2023-08-08",
+        "destination":"Paris",
+        "days" : [
+            {
+                "dayID" : 1 ,
+                "date" : "2023-08-03",
+                "activities" : [
+                    {
+                        "activityID" : 1,
+                        "activityName" : "Eiffel Tower",
+                        "location" : "Champ de Mars",
+                        "description" : "Historical monument",
+                        "votes":{
+                            "interested":2,
+                            "notInterested":1,
+                            "maybe":1
+                        }
+                    }
+                ]
+            },
+            {
+                "dayID" : 2 ,
+                "date" : "2023-08-04",
+                "activities" : [
+                    {
+                        "activityID" : 1,
+                        "activityName" : "Notre Dame",
+                        "location" : "Champ de Mars",
+                        "description" : "Historical monument",
+                        "votes":{
+                            "interested":2,
+                            "notInterested":1,
+                            "maybe":1
+                        }
+                    },
+                    {
+                        "activityID" : 2,
+                        "activityName" : "Cafe",
+                        "location" : "Champ de Mars",
+                        "description" : "Cafe",
+                        "votes":{
+                            "interested":2,
+                            "notInterested":1,
+                            "maybe":1
+                        }
+                    }
+                ]
+            }
+        ],
+        "statusCode":200
+    }]
+}
+
+
