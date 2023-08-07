@@ -6,9 +6,10 @@
         "startDate" : "2023-08-03",
         "endDate" : "2023-08-08",
         "destination":"Paris",
+        "description": "Get ready for the best summer of your lives!",
         "days" : [
             {
-                "dayID" : 1 ,
+                "dayNo" : 1 ,
                 "date" : "2023-08-03",
                 "activities" : [
                     {
@@ -25,7 +26,7 @@
                 ]
             },
             {
-                "dayID" : 2 ,
+                "dayNo" : 2 ,
                 "date" : "2023-08-04",
                 "activities" : [
                     {
@@ -51,6 +52,20 @@
                         }
                     }
                 ]
+            },{
+                "dayNo" : 3 ,
+                "date" : "2023-08-04"
+                
+            },
+            {
+                "dayNo" : 4 ,
+                "date" : "2023-08-04"
+                
+            },
+            {
+                "dayNo" : 5 ,
+                "date" : "2023-08-04"
+                
             }
         ],
         "statusCode":200

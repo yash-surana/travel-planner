@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+    :root{
+        font-family: 'Bebas Neue', sans-serif;
+        font-family: 'Lato', sans-serif;
+    };
+    h1 {
+        @apply text-2xl font-semibold;
+    };
+    h3 {
+        @apply font-normal text-base;
+    };
+    p{
+        @apply font-normal text-[15px];
+    };
+    button{
+        @apply font-normal text-lg;
+    };
+}
+@layer components{
+    .img{
+        @apply cursor-pointer transition-transform;
+    }
+    .img:hover{
+        @apply scale-125
+    }
+}
