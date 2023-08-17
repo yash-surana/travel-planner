@@ -8,9 +8,10 @@ import { useLoaderData, Await } from 'react-router-dom';
 // Import Icons
 import SettingsIcon from '/more-horizontal.svg';
 import AddUserIcon from '/add-user.svg';
+import { GET_ALL_TRIPS } from '../../apis/urls';
 
 export async function SingleTriploader({ params }) {
-  const response = await fetch('https://colab-mvp.onrender.com/trip/getTrips', {
+  const response = await fetch(GET_ALL_TRIPS, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

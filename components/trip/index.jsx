@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import TripCards from './cards';
 import { Await, Link, useLoaderData } from 'react-router-dom';
 
 import AddIcon from '/plus.svg';
+import { GET_ALL_TRIPS } from '../../apis/urls';
 
 export async function AllTripsLoader() {
-  const response = await fetch('https://colab-mvp.onrender.com/trip/getTrips', {
+  const response = await fetch(GET_ALL_TRIPS, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -26,7 +27,7 @@ export async function AllTripsLoader() {
 const TripHome = () => {
   // const [tripsData, setTripsData] = useState({});
   const tripsData = useLoaderData();
-  // console.log(useLoaderData(), tripsData, 'TRIP DATA');
+
   // const fetchAllTripData = async () => {
   //   const response = await fetch(
   //     'https://colab-mvp.onrender.com/trip/getTrips',
@@ -58,11 +59,6 @@ const TripHome = () => {
   //     });
   // }, []);
 
-  // const renderTripCards = () => {
-  //   tripsData.map((trip) => {
-  //     return <TripCards tripData={trip} key={trip.tripID} />;
-  //   });
-  // };
   console.log(tripsData);
   return (
     <React.Suspense fallback={<p>Loading trip data...</p>}>

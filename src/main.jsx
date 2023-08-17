@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App.jsx';
+
+// Import CSS
 import './index.css';
+
+// Import routes and loaders
+import App from './App.jsx';
 import Layout from '../components/layout/layout.jsx';
 import ErrorPage from './error-page.jsx';
+import NewTrip from '../components/trip/newTrip.jsx';
+import ActivityForm from '../components/activities/activityForm.jsx';
 import TripChild, { SingleTriploader } from '../components/trip/tripChild.jsx';
 import { AllTripsLoader } from '../components/trip/index.jsx';
-import ActivityForm from '../components/activities/activityForm.jsx';
-import NewTrip from '../components/trip/newTrip.jsx';
 
 const router = createBrowserRouter([
   {

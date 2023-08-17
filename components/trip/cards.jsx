@@ -6,7 +6,6 @@ const TripCards = ({ tripData }) => {
   const startDate = getFormattedDate(tripData.startDate);
   return (
     <div className="rounded-lg bg-tertiaryBlue p-4 mb-3">
-      {/* <a href={`trips/${tripData.tripID}`}> */}
       <div className="w-full mx-auto flex flex-row justify-between items-start mb-2">
         <Link to={`trips/${tripData.tripID}`} key={tripData.tripID}>
           <div>
@@ -25,7 +24,6 @@ const TripCards = ({ tripData }) => {
           className="img"
         />
       </div>
-      {/* </a> */}
     </div>
   );
 };
