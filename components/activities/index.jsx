@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import SettingsIcon from '/more-horizontal.svg';
+import InterestedIcon from '/check-circle.svg';
+import NotInterestedIcon from '/x-circle.svg';
+import MaybeIcon from '/question-circle.svg';
 
-const ActivitiesCard = ({ activity }) => {
+const ActivitiesCard = ({ activity, day }) => {
   const [radioClicked, setRadioClicked] = useState();
+  const activityIDTrimmed = activity.activityID.replace(' ', '');
   const handleRadioClick = (e) => {
-    console.log(radioClicked);
+    console.log(radioClicked, activityIDTrimmed, 'Clicked');
     setRadioClicked(e.target.value);
   };
+
+  // console.log(day, 'DAYS');
   return (
     <div className="border-1 border-opacity-30 bg-white my-3 py-2 px-4">
       <div className="flex flex-row justify-between items-center pb-4 ">
@@ -13,7 +20,7 @@ const ActivitiesCard = ({ activity }) => {
           {activity.activityName}
         </h3>
         <img
-          src="./more-horizontal.svg"
+          src={SettingsIcon}
           alt="Edit"
           width={24}
           height={24}
@@ -22,20 +29,20 @@ const ActivitiesCard = ({ activity }) => {
       </div>
       <div
         id="votes"
-        class="w-full flex flex-row justify-start gap-3 items-center"
+        className="w-full flex flex-row justify-start gap-3 items-center"
       >
         <div>
           <input
             type="radio"
-            name="vote"
-            id="interested"
+            name={`voteFor${activityIDTrimmed}`}
+            id={`interestedFor${activityIDTrimmed}`}
             value="interested"
             className="hidden"
             onChange={(e) => handleRadioClick(e)}
           />
-          <label for="interested">
+          <label htmlFor={`interestedFor${activityIDTrimmed}`}>
             <img
-              src="./check-circle.svg"
+              src={InterestedIcon}
               alt="Interested"
               width="24"
               height="24"
@@ -48,15 +55,15 @@ const ActivitiesCard = ({ activity }) => {
         <div>
           <input
             type="radio"
-            name="vote"
-            id="not-interested"
+            name={`voteFor${activityIDTrimmed}`}
+            id={`not-interestedFor${activityIDTrimmed}`}
             value="not-interested"
             className="hidden"
             onChange={(e) => handleRadioClick(e)}
           />
-          <label for="not-interested">
+          <label htmlFor={`not-interestedFor${activityIDTrimmed}`}>
             <img
-              src="./x-circle.svg"
+              src={NotInterestedIcon}
               alt="Not Interested"
               width="24"
               height="24"
@@ -71,15 +78,15 @@ const ActivitiesCard = ({ activity }) => {
         <div>
           <input
             type="radio"
-            name="vote"
-            id="maybe"
+            name={`voteFor${activityIDTrimmed}`}
+            id={`maybeFor${activityIDTrimmed}`}
             value="maybe"
             className="hidden"
             onChange={(e) => handleRadioClick(e)}
           />
-          <label for="maybe">
+          <label htmlFor={`maybeFor${activityIDTrimmed}`}>
             <img
-              src="./question-circle.svg"
+              src={MaybeIcon}
               alt="Maybe"
               width="24"
               height="24"

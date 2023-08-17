@@ -1,6 +1,10 @@
 import React from 'react';
 import ActivitiesCard from '../activities';
 
+// Import Icons
+import AddIcon from '/plus.svg';
+import { Link } from 'react-router-dom';
+
 const DayCard = ({ dayInfo }) => {
   const { activities } = dayInfo;
   return (
@@ -10,16 +14,22 @@ const DayCard = ({ dayInfo }) => {
         {activities
           ? activities.map((activity, id) => {
               return (
-                <ActivitiesCard activity={activity} key={'Activity' + id} />
+                <ActivitiesCard
+                  activity={activity}
+                  key={'Activity' + id}
+                  day={dayInfo.day}
+                />
               );
             })
           : ''}
       </div>
 
-      <div className="flex flex-row justify-start items-center gap-2 cursor-pointer hover:scale-105 transition-transform my-3">
-        <img src="./plus.svg" width={24} height={24} alt="Add Activity" />
-        <p className="text-base font-semibold">Add an activity</p>
-      </div>
+      <Link to={`/trips/${dayInfo.tripID}/${dayInfo.day}/newActivity`}>
+        <div className="flex flex-row justify-start items-center gap-2 cursor-pointer hover:-translate-y-1 hover:underline transition-transform my-3 text-[#111E96]">
+          <img src={AddIcon} width={24} height={24} alt="Add Activity" />
+          <p className="text-base font-semibold">Add an activity</p>
+        </div>
+      </Link>
     </div>
   );
 };

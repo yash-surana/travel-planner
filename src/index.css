@@ -21,10 +21,29 @@
     }
 }
 @layer components{
+    .inputText, .inputDate{
+        @apply px-3 py-2 border-gray-400 border-2 rounded-md hover:border-[#386DF4] focus:outline-[#386DF4];
+    }
+    .inputText{
+        @apply w-full block mt-2 mb-5;
+    }
+    .inputDate{
+        @apply mx-4;
+    }
+    .inputSubmit{
+        @apply py-2 px-3 rounded-md bg-tertiaryBlue text-lg font-semibold text-[#404040] hover:bg-secondaryBlue hover:text-white focus:bg-secondaryBlue focus:text-white active:bg-secondaryBlue active:text-white transition;
+    }
+
+    .divStyle{
+        @apply h-full min-h-screen md:w-[50vw] md:mx-auto bg-white md:my-6 md:border-opacity-40 md:rounded-lg p-4 md:border-2 md:border-black;
+    }
     .img{
         @apply cursor-pointer transition-transform;
     }
     .img:hover{
         @apply scale-125
+    }
+    .inputLabel{
+        @apply text-base font-semibold text-black;
     }
 }
