@@ -1,9 +1,6 @@
 import React from 'react';
 import DayCard from '../days';
-// import SampleJSON from '../../sample.json';
-// import { useState, useEffect } from 'react';
-import { useLoaderData, Await } from 'react-router-dom';
-// import { useParams } from 'react-router-dom';
+import { useLoaderData, Await, redirect } from 'react-router-dom';
 
 // Import Icons
 import SettingsIcon from '/more-horizontal.svg';
@@ -20,53 +17,36 @@ export async function SingleTriploader({ params }) {
   });
   const responseJSON = await response.json();
   const trip = responseJSON.find((trip) => trip.tripID == params.tripID);
-  return trip;
+  return trip != undefined && trip != [] ? trip : redirect('/error-page/');
 }
 
 export default function TripChild() {
   const tripData = useLoaderData();
+  const { startDate, endDate } = tripData;
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  let tripDuration =
+    Math.abs((new Date(endDate) - new Date(startDate)) / oneDay) + 1;
 
-  // const { tripID } = useParams();
-  // console.log(tripID, 'trippID');
-  // const [tripData, setTripData] = useState({});
+  const renderDayCards = (tripDayPassed) => {
+    const tripDay = parseInt(tripDayPassed);
+    if (tripData.days.length > 0 && tripData.days.length >= tripDay) {
+      return (
+        <DayCard
+          dayInfo={tripData.days[tripDay - 1]}
+          key={'Day' + (tripDay - 1)}
+        />
+      );
+    } else {
+      return (
+        <DayCard
+          tripDay={tripDay}
+          tripID={tripData.tripID}
+          key={'Day' + (tripDay - 1)}
+        />
+      );
+    }
+  };
 
-  // const fetchTripData = async () => {
-  //   const response = await fetch(
-  //     'https://colab-mvp.onrender.com/trip/getTrips',
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       // body: JSON.stringify({
-  //       //   tripData: '065806b3-7177-476a-a09b-0575490432c8',
-  //       // }),
-  //     }
-  //   );
-
-  //   if (!response.ok) {
-  //     throw new Error('Data coud not be fetched!');
-  //   } else {
-  //     return response.json();
-  //   }
-  //   // console.log(response, 'alltrips');
-  // };
-
-  // useEffect(() => {
-  //   fetchTripData()
-  //     .then((res) => {
-  //       let trip = res.find((trip) => trip.tripID == tripID);
-  //       setTripData(trip);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e.message);
-  //     });
-  // }, []);
-  // console.log(tripData, 'ajnjcs');
-  // console.log(tripData.find((trip) => (tripData.tripID = )));
-  // const tripData = SampleJSON.data[0];
-  // const { tripName, destination, days } = tripData;
   return (
     <React.Suspense fallback={<p>Loading trip data...</p>}>
       <Await
@@ -104,8 +84,8 @@ export default function TripChild() {
 
             {/* Day Cards */}
             <div className="my-5 mx-3 md:max-w-[80%] md:mx-auto">
-              {tripData.days?.map((day, id) => {
-                return <DayCard dayInfo={day} key={'Day' + id} />;
+              {[...Array(tripDuration)].map((day, id) => {
+                return renderDayCards(id + 1);
               })}
             </div>
           </main>

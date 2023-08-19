@@ -9,7 +9,8 @@ import './index.css';
 import App from './App.jsx';
 import Layout from '../components/layout/layout.jsx';
 import ErrorPage from './error-page.jsx';
-import NewTrip from '../components/trip/newTrip.jsx';
+import NewTrip, { newTripAction } from '../components/trip/newTrip.jsx';
+
 import ActivityForm from '../components/activities/activityForm.jsx';
 import TripChild, { SingleTriploader } from '../components/trip/tripChild.jsx';
 import { AllTripsLoader } from '../components/trip/index.jsx';
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
   {
     path: 'trips/newTrip',
     element: <NewTrip />,
+    action: newTripAction,
   },
   {
     path: 'trips/:tripID/:day/newActivity',

@@ -44,6 +44,6 @@
         @apply scale-125
     }
     .inputLabel{
-        @apply text-base font-semibold text-black;
+        @apply text-base font-semibold text-black block;
     }
 }

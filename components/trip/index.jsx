@@ -12,9 +12,6 @@ export async function AllTripsLoader() {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    // body: JSON.stringify({
-    //   tripData: '065806b3-7177-476a-a09b-0575490432c8',
-    // }),
   });
 
   if (!response.ok) {
@@ -59,7 +56,6 @@ const TripHome = () => {
   //     });
   // }, []);
 
-  console.log(tripsData);
   return (
     <React.Suspense fallback={<p>Loading trip data...</p>}>
       <Await
@@ -67,7 +63,7 @@ const TripHome = () => {
         errorElement={<p>Error loading data. Please refresh.</p>}
       >
         {() => (
-          <main className="divStyle">
+          <main className="divStyle min-h-screen">
             <h1 className="text-2xl text-black font-semibold mb-3.5">Trips</h1>
             {/* Trip Cards */}
             {tripsData?.map((trip) => {

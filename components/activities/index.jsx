@@ -3,16 +3,36 @@ import SettingsIcon from '/more-horizontal.svg';
 import InterestedIcon from '/check-circle.svg';
 import NotInterestedIcon from '/x-circle.svg';
 import MaybeIcon from '/question-circle.svg';
+import { VOTE_FOR_ACTIVITY } from '../../apis/urls';
 
 const ActivitiesCard = ({ activity, day }) => {
-  const [radioClicked, setRadioClicked] = useState();
+  const [radioClicked, setRadioClicked] = useState(null);
   const activityIDTrimmed = activity.activityID.replace(' ', '');
-  const handleRadioClick = (e) => {
-    console.log(radioClicked, activityIDTrimmed, 'Clicked');
+  const handleRadioClick = async (e) => {
     setRadioClicked(e.target.value);
+    const voteData = {
+      userID: '1234',
+      activityID: activity.activityID,
+      voteType: e.target.value,
+    };
+    await fetch(VOTE_FOR_ACTIVITY, {
+      method: 'POST',
+      body: JSON.stringify(voteData),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log('TRIP POST RESPONSE SENT');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
-  // console.log(day, 'DAYS');
   return (
     <div className="border-1 border-opacity-30 bg-white my-3 py-2 px-4">
       <div className="flex flex-row justify-between items-center pb-4 ">
@@ -57,7 +77,7 @@ const ActivitiesCard = ({ activity, day }) => {
             type="radio"
             name={`voteFor${activityIDTrimmed}`}
             id={`not-interestedFor${activityIDTrimmed}`}
-            value="not-interested"
+            value="notInterested"
             className="hidden"
             onChange={(e) => handleRadioClick(e)}
           />
@@ -68,7 +88,7 @@ const ActivitiesCard = ({ activity, day }) => {
               width="24"
               height="24"
               className={`${
-                radioClicked === 'not-interested'
+                radioClicked === 'notInterested'
                   ? 'bg-warning'
                   : 'bg-transparent'
               } md:img rounded-full`}
