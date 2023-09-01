@@ -6,6 +6,9 @@ import isNotEmptyNullOrUndefined from '../../apis/checkPropsValue';
 import InterestedIcon from '/src/images/check-circle.svg';
 import NotInterestedIcon from '/src/images/x-circle.svg';
 import MaybeIcon from '/src/images/question-circle.svg';
+import ArrowLeft from '/src/images/arrow-left.svg';
+import LocationIcon from '/src/images/location.svg';
+import TimeIcon from '/src/images/clock.svg';
 
 const ViewActivity = () => {
   const locationRouter = useLocation();
@@ -29,7 +32,7 @@ const ViewActivity = () => {
     <main className="divStyle min-h-screen">
       <div className="w-full mx-auto flex flex-row justify-start items-center gap-2 mb-4 ">
         <img
-          src="/src/images/arrow-left.svg"
+          src={ArrowLeft}
           alt="Go Back"
           width={24}
           height={24}
@@ -47,7 +50,7 @@ const ViewActivity = () => {
         id="viewActivityLocation"
       >
         <img
-          src="/src/images/location.svg"
+          src={LocationIcon}
           alt="Activity Location"
           width={24}
           height={24}
@@ -60,7 +63,7 @@ const ViewActivity = () => {
       isNotEmptyNullOrUndefined(activity.endTime) ? (
         <div className="w-full mx-auto flex flex-row justify-start items-center gap-2 mb-5 ">
           <img
-            src="/src/images/clock.svg"
+            src={TimeIcon}
             alt="Time"
             width={24}
             height={24}

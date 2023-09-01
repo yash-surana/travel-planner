@@ -70,10 +70,20 @@ export default function TripChild() {
                 />
               </div>
               <div className="w-full mx-auto flex flex-row justify-between items-center">
-                <h3 className="w-[80%] text-[15px] font-normal text-black ">
+                <h3 className="w-[50%] text-[15px] font-normal text-black ">
                   {tripData.destination}
                 </h3>
-                <span title="Copy invite link">
+                <span
+                  title="Copy invite link"
+                  className="flex gap-5 font-semibold text-primaryBlue items-start justify-end cursor-pointer"
+                  onClick={() => {
+                    window
+                      ? (navigator.clipboard.writeText(window.location.href),
+                        alert('Link has been copied! Go ahead and share it!'))
+                      : null;
+                  }}
+                >
+                  Copy invite link
                   <img
                     src={AddUserIcon}
                     alt="Trip Settings"
@@ -81,11 +91,6 @@ export default function TripChild() {
                     height={24}
                     className="img"
                     title="Copy invite link"
-                    onClick={() => {
-                      window
-                        ? navigator.clipboard.writeText(window.location.href)
-                        : null;
-                    }}
                   />
                 </span>
               </div>

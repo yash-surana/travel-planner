@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { useUserContext } from '../../context/userContext';
 
 // Import Icons
-import SettingsIcon from '/src/images//more-horizontal.svg';
-import InterestedIcon from '/src/images//check-circle.svg';
-import NotInterestedIcon from '/src/images//x-circle.svg';
-import MaybeIcon from '/src/images//question-circle.svg';
+import SettingsIcon from '/src/images/more-horizontal.svg';
+import InterestedIcon from '/src/images/check-circle.svg';
+import NotInterestedIcon from '/src/images/x-circle.svg';
+import MaybeIcon from '/src/images/question-circle.svg';
+
 const ActivitiesCard = ({ activity, day }) => {
   const { userID } = useUserContext();
   const [radioClicked, setRadioClicked] = useState(null);

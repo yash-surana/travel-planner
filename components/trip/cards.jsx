@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import getFormattedDate from '../../utils/getFormattedDate';
 
+// Import Icons
+import TripSettingsIcon from '/src/images/more-horizontal.svg';
+
 const TripCards = ({ tripData }) => {
   const startDate = getFormattedDate(tripData.startDate);
   return (
@@ -17,7 +20,7 @@ const TripCards = ({ tripData }) => {
         </Link>
 
         <img
-          src="/src/images/more-horizontal.svg"
+          src={TripSettingsIcon}
           alt="Trip Settings"
           width={24}
           height={24}

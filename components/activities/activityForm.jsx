@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import ArrowLeft from '/src/images/arrow-left.svg';
+
 const initialData = {
   activityID: '',
   tripID: '',
@@ -78,7 +80,7 @@ const ActivityForm = () => {
       <div className="mb-4">
         <div className="w-full mx-auto flex flex-row justify-start items-center gap-2 mb-2">
           <img
-            src="/src/images/arrow-left.svg"
+            src={ArrowLeft}
             alt="Go Back"
             width={24}
             height={24}
