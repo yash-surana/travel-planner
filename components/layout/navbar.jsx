@@ -3,7 +3,7 @@ import WanderUsLogo from '/src/images/logo/wander-us-logo.svg';
 const Navbar = () => {
   return (
     <div className="w-full h-[87px] bg-primaryBlue pt-11 pb-4 px-8 lg:px-12 flex flex-row justify-between items-center text-white">
-      <a href="/trips">
+      <a href="/">
         <img
           src={WanderUsLogo}
           alt="Wander Us Logo"

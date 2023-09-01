@@ -78,7 +78,9 @@ export default function TripChild() {
                   className="flex gap-5 font-semibold text-primaryBlue items-start justify-end cursor-pointer"
                   onClick={() => {
                     window
-                      ? (navigator.clipboard.writeText(window.location.href),
+                      ? (navigator.clipboard.writeText(
+                          'https://wander-us.vercel.app/'
+                        ),
                         alert('Link has been copied! Go ahead and share it!'))
                       : null;
                   }}
