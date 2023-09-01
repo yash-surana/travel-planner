@@ -1,11 +1,12 @@
 import React from 'react';
-import DayCard from '../days';
+import { GET_ALL_TRIPS } from '../../apis/urls';
 import { useLoaderData, Await, redirect } from 'react-router-dom';
 
 // Import Icons
-import SettingsIcon from '/more-horizontal.svg';
-import AddUserIcon from '/add-user.svg';
-import { GET_ALL_TRIPS } from '../../apis/urls';
+import SettingsIcon from '/src/images/more-horizontal.svg';
+import AddUserIcon from '/src/images/add-user.svg';
+
+import DayCard from '../days';
 
 export async function SingleTriploader({ params }) {
   const response = await fetch(GET_ALL_TRIPS, {
@@ -72,13 +73,21 @@ export default function TripChild() {
                 <h3 className="w-[80%] text-[15px] font-normal text-black ">
                   {tripData.destination}
                 </h3>
-                <img
-                  src={AddUserIcon}
-                  alt="Trip Settings"
-                  width={24}
-                  height={24}
-                  className="img"
-                />
+                <span title="Copy invite link">
+                  <img
+                    src={AddUserIcon}
+                    alt="Trip Settings"
+                    width={24}
+                    height={24}
+                    className="img"
+                    title="Copy invite link"
+                    onClick={() => {
+                      window
+                        ? navigator.clipboard.writeText(window.location.href)
+                        : null;
+                    }}
+                  />
+                </span>
               </div>
             </section>
 

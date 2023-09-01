@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { addMonths } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Form, redirect } from 'react-router-dom';
+import { Form, redirect, useNavigate } from 'react-router-dom';
 import { POST_NEW_TRIP } from '../../apis/urls';
 
 export const newTripAction = async ({ request }) => {
@@ -10,14 +10,13 @@ export const newTripAction = async ({ request }) => {
   const { tripName, startDate, endDate, description, destination } =
     Object.fromEntries(formData);
   const newTripData = {
-    userID: '2',
+    userID: 'dccf30ca-ddf6-44f8-aeb9-fc369e63da70',
     tripName: tripName,
     destination: destination,
     startDate: new Date(startDate).toISOString(),
     endDate: new Date(endDate).toISOString(),
     // description : description,
   };
-
   await fetch(POST_NEW_TRIP, {
     method: 'POST',
     body: JSON.stringify(newTripData),
@@ -41,16 +40,22 @@ const NewTrip = () => {
   const requiredStar = <span className="text-[#E53F3F]">*</span>;
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <div className="divStyle">
       <div className="mb-4">
         <div className="w-full mx-auto flex flex-row justify-start items-center gap-2 mb-2">
           <img
-            src="/arrow-left.svg"
+            src="/src/images/arrow-left.svg"
             alt="Go Back"
             width={24}
             height={24}
             className="img"
+            onClick={goBack}
           />
           <h1 className="text-2xl text-black font-semibold">New Trip</h1>
         </div>
@@ -102,34 +107,6 @@ const NewTrip = () => {
           autoComplete="off"
           required
         />
-        {/* <div className="flex flex-col lg:flex-row gap-3 justify-start items-start lg:items-center mb-5">
-          <div>
-            <label className="inputLabel" htmlFor="startDate">
-              Start Date {requiredStar}
-            </label>
-            <input
-              type="date"
-              name="startDate"
-              id="startDate"
-              placeholder="Start Date"
-              required
-              className="inputDate"
-            />
-          </div>
-          <div>
-            <label className="inputLabel" htmlFor="endDate">
-              End Date {requiredStar}
-            </label>
-            <input
-              type="date"
-              name="endDate"
-              id="endDate"
-              placeholder="End Date"
-              required
-              className="inputDate ml-6 lg:ml-4"
-            />
-          </div>
-        </div> */}
 
         {/* Destination */}
         <label htmlFor="destination" className="inputLabel" aria-required>

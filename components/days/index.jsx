@@ -2,7 +2,7 @@ import React from 'react';
 import ActivitiesCard from '../activities';
 
 // Import Icons
-import AddIcon from '/plus.svg';
+import AddIcon from '/src/images/plus.svg';
 import { Link } from 'react-router-dom';
 
 const DayCard = ({ dayInfo = {}, tripDay, tripID }) => {

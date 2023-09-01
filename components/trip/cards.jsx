@@ -7,7 +7,7 @@ const TripCards = ({ tripData }) => {
   return (
     <div className="rounded-lg bg-tertiaryBlue p-4 mb-3">
       <div className="w-full mx-auto flex flex-row justify-between items-start mb-2">
-        <Link to={`trips/${tripData.tripID}`} key={tripData.tripID}>
+        <Link to={`${tripData.tripID}`} key={tripData.tripID}>
           <div>
             <h3 className="text-[15px] font-semibold text-black">
               {tripData.tripName}
@@ -17,11 +17,12 @@ const TripCards = ({ tripData }) => {
         </Link>
 
         <img
-          src="./more-horizontal.svg"
+          src="/src/images/more-horizontal.svg"
           alt="Trip Settings"
           width={24}
           height={24}
           className="img"
+          title="Coming soon"
         />
       </div>
     </div>

@@ -10,16 +10,23 @@ import App from './App.jsx';
 import Layout from '../components/layout/layout.jsx';
 import ErrorPage from './error-page.jsx';
 import NewTrip, { newTripAction } from '../components/trip/newTrip.jsx';
-
+import { UserProvider } from '../context/userContext';
 import ActivityForm from '../components/activities/activityForm.jsx';
 import TripChild, { SingleTriploader } from '../components/trip/tripChild.jsx';
 import { AllTripsLoader } from '../components/trip/index.jsx';
+import ViewActivity from '../components/activities/viewActivity';
+import SignUp, { SignUpAction } from '../components/signUp';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <SignUp />,
     errorElement: <ErrorPage />,
+    action: SignUpAction,
+  },
+  {
+    path: 'trips',
+    element: <App />,
     loader: AllTripsLoader,
   },
   {
@@ -36,12 +43,18 @@ const router = createBrowserRouter([
     path: 'trips/:tripID/:day/newActivity',
     element: <ActivityForm />,
   },
+  {
+    path: 'trips/:tripID/:day/viewActivity',
+    element: <ViewActivity />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Layout>
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </Layout>
   </React.StrictMode>
 );

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, useNavigate, useParams } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
-import { addMonths } from 'date-fns';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const initialData = {
   activityID: '',
@@ -28,13 +25,15 @@ const ActivityForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const submitButton = document.getElementById('submit');
-    const { tripID, dayID, activityName, location, description } = activityArr;
+    const { tripID, dayID, activityName, location, description, cost } =
+      activityArr;
     const activityData = {
       tripID: tripID,
       activityName: activityName,
       location: location,
       day: parseInt(day),
       description: description,
+      cost: cost,
     };
 
     await fetch('https://colab-mvp.onrender.com/activity/create', {
@@ -53,12 +52,12 @@ const ActivityForm = () => {
       })
       .catch((err) => {
         submitButton.style.backgroundColor = '#E53F3F';
-        console.log(err.message);
+        throw new Response('', {
+          status: 404,
+          statusText: err.message,
+        });
       });
     return navigate(`/trips/${tripID}/`);
-
-    // localStorage.removeItem(activityArr);
-    // localStorage.setItem('activityData', JSON.stringify(activityArr));
   };
 
   const handleChange = (event) => {
@@ -66,10 +65,7 @@ const ActivityForm = () => {
     setActivityArr((prev) => ({ ...prev, [name]: value }));
   };
   useEffect(() => {
-    const ids = [
-      { tripID: tripID },
-      // { dayID: activityData['dayID'] },
-    ];
+    const ids = [{ tripID: tripID }];
     ids.map((newID) => {
       setActivityArr((prev) => ({
         ...prev,
@@ -82,7 +78,7 @@ const ActivityForm = () => {
       <div className="mb-4">
         <div className="w-full mx-auto flex flex-row justify-start items-center gap-2 mb-2">
           <img
-            src="/arrow-left.svg"
+            src="/src/images/arrow-left.svg"
             alt="Go Back"
             width={24}
             height={24}
@@ -93,7 +89,6 @@ const ActivityForm = () => {
         </div>
         <h3 className="text-[15px] font-normal text-black">Add activity</h3>
       </div>
-      {/* className="mx-4" onSubmit={(e) => handleSubmit(e)} */}
       <form method="post" className="mx-4" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="activityName" className="inputLabel" aria-required>
           Name {requiredStar}
@@ -109,7 +104,7 @@ const ActivityForm = () => {
         />
         {/* Destination */}
         <label htmlFor="location" className="inputLabel" aria-required>
-          Location
+          Location {requiredStar}
         </label>
         <input
           type="text"
@@ -117,17 +112,42 @@ const ActivityForm = () => {
           id="location"
           placeholder="Where are you going?"
           className="inputText"
+          required
           onChange={(e) => handleChange(e)}
         />
         {/* Cost */}
-        <label htmlFor="cost" className="inputLabel" aria-required>
-          Cost
+        <label htmlFor="cost" className="inputLabel">
+          Cost per person
         </label>
         <input
           type="text"
           name="cost"
           id="cost"
           placeholder="Estimated cost"
+          className="inputText"
+          onChange={(e) => handleChange(e)}
+        />
+
+        {/* Time */}
+        <label htmlFor="startTime" className="inputLabel">
+          Start Time in HH:MM format
+        </label>
+        <input
+          type="text"
+          name="startTime"
+          id="startTime"
+          placeholder="When will you start?"
+          className="inputText"
+          onChange={(e) => handleChange(e)}
+        />
+        <label htmlFor="endTime" className="inputLabel">
+          End Time in HH:MM format
+        </label>
+        <input
+          type="text"
+          name="endTime"
+          id="endTime"
+          placeholder="When will you end?"
           className="inputText"
           onChange={(e) => handleChange(e)}
         />

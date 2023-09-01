@@ -3,3 +3,7 @@ export const GET_ALL_TRIPS = `${domainURL}trip/getTrips/`;
 export const POST_NEW_TRIP = `${domainURL}trip/create/`;
 export const GET_SINGLE_TRIP = `${domainURL}activity/trip/`;
 export const VOTE_FOR_ACTIVITY = `${domainURL}votes/`;
+export const LOGIN = `${domainURL}auth/signin/`;
+export const SIGNUP = `${domainURL}auth/signup/`;
+export const GET_USER_DETAILS = `${domainURL}auth/profile`;
+export const FAKE_API = `${domainURL}activity/fake`;
